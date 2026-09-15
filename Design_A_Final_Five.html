@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ctrl Alt Lift — Design A (Final Five Screens)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF2ED;
+    --surface:#FFFFFF;
+    --ink:#1B231F;
+    --muted:#5C6560;
+    --teal:#1B6B5A;
+    --teal-tint:#E1EEEA;
+    --amber:#E2A63B;
+    --amber-tint:#FBF0DA;
+    --blue:#3E7CB1;
+    --blue-tint:#E7F0F7;
+    --border:#DCE2DB;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    padding:40px 24px 80px;
+  }
+  h1{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    font-size:26px;
+    margin:0 0 6px;
+  }
+  .lede{
+    color:var(--muted);
+    font-size:14px;
+    max-width:720px;
+    line-height:1.6;
+    margin:0 0 40px;
+  }
+  .row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+  }
+  .unit{width:300px;}
+  .frame{
+    width:300px;
+    height:620px;
+    background:var(--surface);
+    border-radius:32px;
+    border:1px solid var(--border);
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .notch{
+    width:90px;
+    height:18px;
+    background:var(--ink);
+    border-radius:0 0 12px 12px;
+    margin:0 auto;
+  }
+  .screen{
+    flex:1;
+    padding:18px 18px 20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .cap{
+    margin-top:14px;
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+  .cap b{color:var(--ink);font-weight:600;}
+  .flag{
+    display:inline-block;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:3px 8px;
+    border-radius:6px;
+    margin-bottom:6px;
+  }
+  .flag.validated{background:var(--teal-tint);color:var(--teal);}
+  .flag.mixed{background:var(--amber-tint);color:#9C6B10;}
+  .top-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--muted);
+    margin-bottom:4px;
+    font-weight:600;
+  }
+  .screen-title{
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:19px;
+    margin:0 0 4px;
+  }
+  .sub{
+    font-size:13px;
+    color:var(--muted);
+    margin:0 0 18px;
+  }
+
+  /* Home */
+  .ring-wrap{display:flex;justify-content:center;margin:6px 0 14px;position:relative;}
+  .ring-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+  .ring-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:28px;color:var(--teal);}
+  .ring-label{font-size:11px;color:var(--muted);}
+  .cta{
+    background:var(--teal);color:#fff;border:none;border-radius:14px;padding:14px;
+    font-family:'Manrope',sans-serif;font-weight:700;font-size:14.5px;width:100%;margin-top:4px;cursor:pointer;
+  }
+  .cta-sub{text-align:center;font-size:11.5px;color:var(--muted);margin-top:6px;}
+  .badge-row{display:flex;gap:8px;margin-top:18px;}
+  .badge{flex:1;background:var(--amber-tint);border-radius:12px;padding:10px 6px;text-align:center;}
+  .badge.dim{background:var(--bg);opacity:0.55;}
+  .badge-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:15px;color:var(--amber);}
+  .badge.dim .badge-num{color:var(--muted);}
+  .badge-txt{font-size:9.5px;color:var(--muted);margin-top:2px;}
+  .streak-pill{display:flex;align-items:center;gap:8px;background:var(--blue-tint);border-radius:12px;padding:10px 12px;margin-top:14px;font-size:12px;}
+  .shield{width:22px;height:22px;background:var(--blue);border-radius:6px;flex-shrink:0;}
+  .cue-tag{
+    display:inline-flex;align-items:center;gap:6px;background:var(--blue-tint);color:var(--blue);
+    font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:8px;margin-top:8px;width:fit-content;
+  }
+  .pulse-bars{display:flex;align-items:flex-end;gap:1.5px;height:10px;}
+  .pulse-bars span{width:2px;background:var(--blue);border-radius:1px;}
+  .pulse-bars span:nth-child(1){height:5px;}
+  .pulse-bars span:nth-child(2){height:9px;}
+  .pulse-bars span:nth-child(3){height:6px;}
+
+  /* Missed day */
+  .deemph-missed{font-size:12.5px;color:var(--muted);font-weight:500;margin:2px 0 18px;}
+  .reengage-card{background:var(--amber-tint);border-radius:16px;padding:20px 16px;text-align:center;margin-top:6px;}
+  .reengage-icon{width:44px;height:44px;border-radius:50%;background:var(--amber);margin:0 auto 12px;}
+  .reengage-title{font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;}
+  .reengage-body{font-size:12.5px;color:var(--muted);line-height:1.6;}
+  .days-left-note{font-size:11px;color:var(--teal);font-weight:600;margin-top:10px;}
+  .frozen-note{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:11.5px;color:var(--blue);font-weight:600;}
+
+  /* In-session */
+  .demo-box{
+    background:#F2F0EA;border:1.5px dashed #B9B6AC;border-radius:14px;height:150px;position:relative;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+  }
+  .demo-badge{position:absolute;top:10px;left:10px;background:var(--ink);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:0.05em;padding:3px 8px;border-radius:6px;}
+  .play-tri{width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:16px solid #B9B6AC;margin-bottom:8px;}
+  .demo-caption{font-size:10.5px;color:#8A877D;text-align:center;padding:0 20px;}
+  .audio-chip{
+    position:absolute;bottom:8px;right:8px;background:rgba(27,35,31,0.75);color:#fff;font-size:9px;font-weight:600;
+    padding:4px 8px;border-radius:7px;display:flex;align-items:center;gap:4px;
+  }
+  .pulse-mini{display:flex;align-items:flex-end;gap:1.5px;height:8px;}
+  .pulse-mini span{width:1.5px;background:var(--blue);border-radius:1px;}
+  .pulse-mini span:nth-child(1){height:4px;}
+  .pulse-mini span:nth-child(2){height:7px;}
+  .pulse-mini span:nth-child(3){height:5px;}
+  .exercise-name{font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;margin-top:12px;}
+  .variant-toggle{display:flex;gap:8px;margin-top:10px;}
+  .variant-opt{
+    flex:1;text-align:center;padding:9px;border-radius:10px;background:var(--bg);color:var(--muted);
+    font-size:12px;font-weight:700;font-family:'Manrope',sans-serif;border:1.5px solid var(--border);
+  }
+  .variant-opt.active{background:var(--teal-tint);color:var(--teal);border-color:var(--teal);}
+  .stat-row{display:flex;gap:8px;margin-top:14px;}
+  .stat-box{flex:1;background:var(--bg);border-radius:10px;padding:10px;text-align:center;}
+  .stat-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:16px;}
+  .stat-lbl{font-size:9.5px;color:var(--muted);margin-top:2px;}
+  .next-up{
+    display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:14px;
+    border-top:1px solid var(--border);font-size:11.5px;color:var(--muted);
+  }
+  .next-thumb{width:34px;height:34px;border-radius:8px;background:var(--bg);flex-shrink:0;}
+  .session-controls{display:flex;gap:8px;margin-top:12px;}
+  .ctrl-btn{flex:1;border-radius:12px;padding:11px;text-align:center;font-size:12.5px;font-weight:700;font-family:'Manrope',sans-serif;}
+  .ctrl-btn.pause{background:var(--bg);color:var(--ink);}
+  .ctrl-btn.done{background:var(--teal);color:#fff;}
+
+  /* Achievements */
+  .achv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
+  .achv-cell{background:var(--amber-tint);border-radius:12px;padding:12px 6px;text-align:center;}
+  .achv-cell.locked{background:var(--bg);}
+  .achv-cell.surprise-cell{background:linear-gradient(135deg, var(--amber-tint), #fff);border:1.5px dashed var(--amber);}
+  .achv-icon{width:30px;height:30px;border-radius:50%;background:var(--amber);margin:0 auto 6px;}
+  .achv-cell.locked .achv-icon{background:var(--border);}
+  .achv-name{font-size:9.5px;font-weight:600;color:var(--ink);}
+  .achv-cell.locked .achv-name{color:var(--muted);}
+  .achv-sub{font-size:8.5px;color:var(--muted);margin-top:2px;}
+  .points-strip{display:flex;justify-content:space-between;align-items:center;background:var(--teal-tint);border-radius:12px;padding:12px 14px;margin-top:16px;}
+  .points-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:20px;color:var(--teal);}
+  .points-lbl{font-size:10px;color:var(--teal);}
+
+  /* Settings */
+  .set-section{margin-bottom:20px;}
+  .set-head{font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);font-weight:700;margin-bottom:8px;}
+  .set-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);}
+  .set-row:last-child{border-bottom:none;}
+  .set-name{font-size:13px;font-weight:500;}
+  .set-desc{font-size:10.5px;color:var(--muted);margin-top:2px;}
+  .toggle{width:38px;height:22px;border-radius:11px;background:var(--border);position:relative;flex-shrink:0;}
+  .toggle.on{background:var(--teal);}
+  .toggle::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:2px;left:2px;}
+  .toggle.on::after{left:18px;}
+</style>
+</head>
+<body>
+
+<h1>Ctrl Alt Lift — Design A, final five screens</h1>
+
+<div class="row">
+
+  <div class="unit">
+    <div class="frame">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="top-label">Today</div>
+        <div class="screen-title">Good evening, Sam</div>
+        <div class="sub">Your next session takes 12 minutes</div>
+
+        <div class="ring-wrap">
+          <svg width="150" height="150" viewBox="0 0 150 150">
+            <circle cx="75" cy="75" r="62" fill="none" stroke="#E1EEEA" stroke-width="14"/>
+            <circle cx="75" cy="75" r="62" fill="none" stroke="#1B6B5A" stroke-width="14"
+              stroke-dasharray="389" stroke-dashoffset="120" stroke-linecap="round"
+              transform="rotate(-90 75 75)"/>
+          </svg>
+          <div class="ring-center">
+            <div class="ring-num">4/5</div>
+            <div class="ring-label">this week</div>
+          </div>
+        </div>
+
+        <button class="cta">Start 12-minute session</button>
+        <div class="cta-sub">No equipment needed · starts immediately</div>
+
+        <div class="badge-row">
+          <div class="badge"><div class="badge-num">✓</div><div class="badge-txt">1 workout</div></div>
+          <div class="badge"><div class="badge-num">✓</div><div class="badge-txt">3 workouts</div></div>
+          <div class="badge dim"><div class="badge-num">5</div><div class="badge-txt">workouts</div></div>
+        </div>
+        <div class="cue-tag">
+          <div class="pulse-bars"><span></span><span></span><span></span></div>
+          <span class="cue-note">Soft chime + pulse plays when a badge unlocks</span>
+        </div>
+
+        <div class="streak-pill">
+          <div class="shield"></div>
+          <div>6-day streak · 3 freezes available this month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="frame">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="top-label">Welcome back</div>
+        <div class="deemph-missed">You missed yesterday — that's completely fine</div>
+
+        <div class="reengage-card">
+          <div class="reengage-icon"></div>
+          <div class="reengage-title">Your streak is protected</div>
+          <div class="reengage-body">We used a streak freeze, so your 6-day streak is still counting. No need to make up for it — just pick up from here.</div>
+          <div class="days-left-note">4 days left this week to hit your goal</div>
+          <button class="cta" style="margin-top:14px;">Start today's session</button>
+        </div>
+
+        <div class="frozen-note">🛡 Freeze used · 2 of 3 remaining this month</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="frame">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="top-label">Exercise 3 of 6</div>
+        <div class="demo-box">
+          <div class="demo-badge">DEMO VIDEO</div>
+          <div class="play-tri"></div>
+          <div class="demo-caption">Looping form demo plays here — placeholder in this prototype</div>
+          <div class="audio-chip">
+            <div class="pulse-mini"><span></span><span></span><span></span></div>
+            Audio guide on
+          </div>
+        </div>
+
+        <div class="exercise-name">Shoulder press</div>
+        <div class="variant-toggle">
+          <div class="variant-opt active">Seated</div>
+          <div class="variant-opt">Standing</div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-num">00:38</div><div class="stat-lbl">elapsed</div></div>
+          <div class="stat-box"><div class="stat-num">12 / 15</div><div class="stat-lbl">reps</div></div>
+        </div>
+
+        <div class="cue-tag">
+          <div class="pulse-bars"><span></span><span></span><span></span></div>
+          <span class="cue-note">Short pulse on every 5th rep · no sound mid-exercise</span>
+        </div>
+
+        <div class="next-up">
+          <div class="next-thumb"></div>
+          <div>Next: Standing calf raises</div>
+        </div>
+
+        <div class="session-controls">
+          <div class="ctrl-btn pause">Pause</div>
+          <div class="ctrl-btn done">Next exercise</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="frame">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="top-label">Progress</div>
+        <div class="screen-title">Achievements</div>
+        <div class="sub">Earned through consistency, not competition</div>
+
+        <div class="points-strip">
+          <div>
+            <div class="points-num">240</div>
+            <div class="points-lbl">points earned</div>
+          </div>
+          <div class="cue-tag" style="margin-top:0;">
+            <div class="pulse-bars"><span></span><span></span><span></span></div>
+            <span class="cue-note">Points update silently — no sound</span>
+          </div>
+        </div>
+
+        <div class="achv-grid">
+          <div class="achv-cell"><div class="achv-icon"></div><div class="achv-name">First step</div><div class="achv-sub">1 session</div></div>
+          <div class="achv-cell"><div class="achv-icon"></div><div class="achv-name">Getting going</div><div class="achv-sub">5 sessions</div></div>
+          <div class="achv-cell"><div class="achv-icon"></div><div class="achv-name">Steady</div><div class="achv-sub">7-day streak</div></div>
+          <div class="achv-cell surprise-cell"><div class="achv-icon"></div><div class="achv-name">Surprise</div><div class="achv-sub">Random bonus for consistency</div></div>
+          <div class="achv-cell locked"><div class="achv-icon"></div><div class="achv-name">Regular</div><div class="achv-sub">20 sessions</div></div>
+          <div class="achv-cell locked"><div class="achv-icon"></div><div class="achv-name">All-rounder</div><div class="achv-sub">5 exercise types</div></div>
+          <div class="achv-cell locked"><div class="achv-icon"></div><div class="achv-name">One month</div><div class="achv-sub">30-day streak</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="unit">
+    <div class="frame">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="top-label">Settings</div>
+        <div class="screen-title">Your preferences</div>
+        <div class="sub">Everything here can be changed later</div>
+
+        <div class="set-section">
+          <div class="set-head">Community</div>
+          <div class="set-row">
+            <div>
+              <div class="set-name">Friends-only leaderboard</div>
+              <div class="set-desc">Off by default · no public rankings</div>
+            </div>
+            <div class="toggle"></div>
+          </div>
+        </div>
+
+        <div class="set-section">
+          <div class="set-head">Accessibility</div>
+          <div class="set-row">
+            <div>
+              <div class="set-name">Seated exercises</div>
+              <div class="set-desc">Equal alternative to standing — not a fallback</div>
+            </div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="set-row">
+            <div>
+              <div class="set-name">Audio &amp; vibration cues</div>
+              <div class="set-desc">For achievements and milestones</div>
+            </div>
+            <div class="toggle on"></div>
+          </div>
+          <div class="set-row">
+            <div>
+              <div class="set-name">Reduce animation</div>
+              <div class="set-desc">Simple, static layout</div>
+            </div>
+            <div class="toggle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
